@@ -54,4 +54,6 @@ Route::post('/ejercicio3', function (Request $request) {
         'accesories.name' => 'required|string',
         'accesories.price' => 'required|numeric|gt:0'
     ]);
+
+    return response();
 });
