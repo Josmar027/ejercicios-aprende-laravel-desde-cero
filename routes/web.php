@@ -35,17 +35,23 @@ Route::post('/ejercicio1', function () {
 
 Route::post('/ejercicio3', function (Request $request) {
     $request->validate([
-        'name' => 'required|max:64',
-        'description' => 'required|max:512',
-        'price' => 'required|numeric|min:1',
-        'has_battery' => 'boolean',
-        'battery_duration' => 'required',
-        'colors' => 'required|in:blue,white,black',
-        'dimensions' => 'required',
+        'name' => 'required|string|max:64',
+        'description' => 'required|string|max:512',
+        'price' => 'required|numeric|gt:0',
+        'has_battery' => 'required|boolean',
+        'battery_duration' => 'required|required_if:has_battery,true|numeric|gt:0',
 
-        'accesories' => [
-            'name' => 'required',
-            'price' => 'required'
-        ]
+        'colors' => 'required|array',
+        'colors.*' => 'required|string',
+
+        'dimensions' => 'required|array',
+        'dimensions.width' => 'required|numeric|gt:0',
+        'dimension.heigh' => 'required|numeric|gt:0',
+        'dimension.length' => 'required|numeric|gt:0',
+
+        'accesories' => 'required|array',
+        'accesories.*' => 'required|array',
+        'accesories.name' => 'required|string',
+        'accesories.price' => 'required|numeric|gt:0'
     ]);
 });
