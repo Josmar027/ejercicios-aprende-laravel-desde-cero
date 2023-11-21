@@ -29,3 +29,8 @@ Route::get('/ejercicio1', function () {
 Route::post('/ejercicio1', function () {
     return "POST OK";
 });
+
+
+// Ejercicio 3
+
+Route::post('/ejercicio3', [])
