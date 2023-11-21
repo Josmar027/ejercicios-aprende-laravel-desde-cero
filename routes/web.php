@@ -33,4 +33,19 @@ Route::post('/ejercicio1', function () {
 
 // Ejercicio 3
 
-Route::post('/ejercicio3', [])
+Route::post('/ejercicio3', function (Request $request) {
+    $request->validate([
+        'name' => 'required|max:64',
+        'description' => 'required|max:512',
+        'price' => 'required|numeric|min:1',
+        'has_battery' => 'boolean',
+        'battery_duration' => 'required',
+        'colors' => 'required|in:blue,white,black',
+        'dimensions' => 'required',
+
+        'accesories' => [
+            'name' => 'required',
+            'price' => 'required'
+        ]
+    ]);
+});
